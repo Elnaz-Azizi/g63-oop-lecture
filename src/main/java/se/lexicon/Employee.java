@@ -25,11 +25,45 @@ public class Employee {
     }
 
     public Employee(String name, String role, Department department, double salary) {
-        this.name = name;
-        this.role = role;
-        this.department = department;
-        this.salary = salary;
+       //setName(name);
+        setRole(role);
+        setDepartment(department);
+        setSalary(salary);
         totalEmployees++;  // increments every time a new Employee is created
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    //We do not need to change the name after creation, so no need to add setter
+   /* public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        this.name = name;
+    }*/
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        if (role == null || role.isEmpty()) {
+            throw new IllegalArgumentException("Role cannot be null or empty");
+        }
+        this.role = role;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        if (department == null) {
+            throw new IllegalArgumentException("Department cannot be null");
+        }
+        this.department = department;
     }
 
     public double getSalary() {
@@ -54,6 +88,9 @@ public class Employee {
     }
 
     void raiseSalary(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount should be positive");
+        }
         salary += amount;// salary = salary + amount
         IO.println(name + "'s new salary: " + salary);
     }

@@ -17,11 +17,11 @@ public class App {
        lena.salary = 65000.0;*/
 
         //With constructor
-       // Employee anna = new Employee("Anna", "Developer", "IT", 75000);
-        Employee anna = new Employee("Anna", "Developer",Department.IT, 75000);
+        // Employee anna = new Employee("Anna", "Developer", "IT", 75000);
+        Employee anna = new Employee("Anna", "Developer", Department.IT, 75000);
 
 
-       // Employee lena = new Employee("Lena", "Designer", "Marketing", 65000.0);
+        // Employee lena = new Employee("Lena", "Designer", "Marketing", 65000.0);
         Employee lena = new Employee("Lena", "Designer", Department.MARKETING, 65000.0);
 
         anna.introduce();
@@ -32,7 +32,7 @@ public class App {
         lena.displayInfo();
 
         Employee unknown = new Employee();
-        Employee junior = new Employee ("Oskar");
+        Employee junior = new Employee("Oskar");
         Employee senior = new Employee("Maja", "Manager", Department.HR, 90000);
 
         unknown.displayInfo();
@@ -41,6 +41,7 @@ public class App {
 
         Employee.printTotalEmployees();
 
+        //Before using access modifier
     /*    Employee aida = new Employee("Anna", "Developer", Department.IT, 75000);
 
         aida.salary     = -99999;   // negative salary — no error
@@ -51,5 +52,9 @@ public class App {
         // "" | null | -99999.0   ← broken object, Java said nothing
 
 
+        Employee aida = new Employee("Anna", "Developer", Department.IT, 75000);
+        // aida.setSalary(80000);
+        aida.setSalary(-56000); // throws IllegalArgumentException: Salary cannot be negative.
+        aida.displayInfo();
     }
 }
