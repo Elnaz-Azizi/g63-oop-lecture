@@ -10,6 +10,7 @@ public class Employee {
     //String department;
     private Department department;
     private double salary;
+    private WorkContract contract; // owned by Employee — created internally
 
     // Default constructor — no parameters, fields stay at null/0
     public Employee() {
@@ -25,11 +26,21 @@ public class Employee {
     }
 
     public Employee(String name, String role, Department department, double salary) {
-       //setName(name);
+        this.name = name;
         setRole(role);
         setDepartment(department);
         setSalary(salary);
         totalEmployees++;  // increments every time a new Employee is created
+    }
+
+    //Composition example.
+    public Employee(String name, String role, Department department, double salary,
+                    String startDate, String contractType) {
+        this.name = name;
+        setRole(role);
+        setDepartment(department);
+        setSalary(salary);
+        this.contract = new WorkContract(startDate, contractType);  // created inside Employee
     }
 
     public String getName() {
@@ -77,6 +88,10 @@ public class Employee {
         this.salary = salary;
     }
 
+    public WorkContract getContract() {
+        return contract;
+    }
+
     //Methods
 
     void introduce() {
@@ -95,11 +110,29 @@ public class Employee {
         IO.println(name + "'s new salary: " + salary);
     }
 
-    void displayInfo() {
+   /* void displayInfo() {
         IO.println(name + " | " + role + " | " + department + " | " + salary);
+    }*/
+
+    // Updated displayInfo to include contract details
+    public void displayInfo() {
+        String info = getName() + " | " + getRole() + " | " + getDepartment() + " | " + getSalary();
+        if (contract != null) info += " | " + contract.getDetails();
+        IO.println(info);
     }
 
     static void printTotalEmployees() {
         IO.println("Total employees: " + totalEmployees);
     }
+
+    //Object relationships
+    // ASSOCIATION method — Laptop is passed as a parameter, not stored as a field.
+    // The connection exists only during this method call.
+    // Employee uses the Laptop temporarily — no ownership, no permanent bond.
+    public void use(Laptop laptop) {
+        if (laptop == null)
+            throw new IllegalArgumentException("Laptop cannot be null.");
+        IO.println(getName() + " is using " + laptop.getDetails());
+    }
+
 }
