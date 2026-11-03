@@ -25,6 +25,12 @@ public class Employee {
         this.salary = 0;
     }
 
+    public Employee(String name, Department department, double salary) {
+        this.name = name;
+        setDepartment(department);
+        setSalary(salary);
+    }
+
     public Employee(String name, String role, Department department, double salary) {
         this.name = name;
         setRole(role);
@@ -108,6 +114,16 @@ public class Employee {
         }
         salary += amount;// salary = salary + amount
         IO.println(name + "'s new salary: " + salary);
+    }
+
+    // ── Overloaded version, same name, different parameters ────────
+    public void raiseSalary(double amount, String reason) {
+        if (amount <= 0)
+            throw new IllegalArgumentException("Raise amount must be positive.");
+        if (reason == null || reason.isBlank())
+            throw new IllegalArgumentException("Reason must not be empty.");
+        this.salary += amount;
+        IO.println(getName() + "'s salary raised by " + amount + " (" + reason + "). New salary: " + getSalary());
     }
 
    /* void displayInfo() {
