@@ -33,4 +33,9 @@ public class Manager extends Employee {
                 + teamSize + " in " + getDepartment()
                 + " with " + yearsOfExperience + " years of experience.");
     }
+
+    @Override
+    public void onboard(Employee newEmployee) {
+        IO.println(getName() + " is assigning tasks and setting goals for " + newEmployee.getName() + ".");
+    }
 }

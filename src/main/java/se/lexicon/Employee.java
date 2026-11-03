@@ -1,6 +1,6 @@
 package se.lexicon;
 
-public class Employee {
+public  abstract class Employee {
 
     static int totalEmployees = 0;   // shared — belongs to the class
 
@@ -150,6 +150,8 @@ public class Employee {
             throw new IllegalArgumentException("Laptop cannot be null.");
         IO.println(getName() + " is using " + laptop.getDetails());
     }
+
+    public abstract void onboard(Employee newEmployee);
 
 
 }

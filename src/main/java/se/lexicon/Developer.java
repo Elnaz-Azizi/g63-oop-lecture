@@ -29,4 +29,9 @@ public class Developer extends Employee {
         IO.println("Hi, I'm " + getName() + ", a " + specialization
                 + " Developer (" + programmingLanguage + ") in " + getDepartment() + ".");
     }
+
+    @Override
+    public void onboard(Employee newEmployee) {
+        IO.println(getName() + " is doing pair programming with " + newEmployee.getName() + ".");
+    }
 }
